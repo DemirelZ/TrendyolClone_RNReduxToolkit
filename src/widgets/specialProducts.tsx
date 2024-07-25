@@ -25,7 +25,11 @@ const SpecialProducts = (props: Props) => {
 
   return (
     <View style={{margin: 5}}>
-      <WidgetsHeader title={'Special Products'} seeAll={true} />
+      <WidgetsHeader
+        title={'Special Products'}
+        seeAll={true}
+        type={'SpecialProducts'}
+      />
       {pending ? (
         <ActivityIndicator style={{height: height * 0.36}} size={'large'} />
       ) : (

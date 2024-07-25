@@ -20,7 +20,7 @@ const NewArrival: React.FC = () => {
   );
   return (
     <View style={{margin: 5, backgroundColor: 'white'}}>
-      <WidgetsHeader title={'New Arrival'} seeAll={true} />
+      <WidgetsHeader title={'New Arrival'} seeAll={true} type="NewArrival" />
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}

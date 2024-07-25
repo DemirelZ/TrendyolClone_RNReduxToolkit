@@ -1,7 +1,9 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
+import {useNavigation} from '@react-navigation/native';
+import {PRODUCTDETAIL} from '../../utils/routes';
 
 interface IPoductCardItem {
   item: {
@@ -13,13 +15,17 @@ interface IPoductCardItem {
 }
 
 const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
-  console.log(item);
+  const navigation = useNavigation();
+  //console.log(item);
   return (
-    <View
+    <Pressable
+      onPress={() => {
+        navigation.navigate(PRODUCTDETAIL, {product: item});
+      }}
       style={{
         width: width * 0.4,
         height: height * 0.35,
-        borderWidth: 0.5,
+        borderWidth: 0.3,
         borderRadius: 8,
         margin: 5,
         padding: 5,
@@ -33,7 +39,9 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
         }}
         source={{uri: item.image}}
       />
-      <Text style={{marginVertical: 10}}>{item.title}</Text>
+      <Text numberOfLines={4} style={{marginVertical: 10}}>
+        {item.title}
+      </Text>
       <View
         style={{
           flex: 1,
@@ -41,7 +49,7 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
         }}>
         <Text style={{fontSize: 24}}>{concatPrice(item.price)}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
