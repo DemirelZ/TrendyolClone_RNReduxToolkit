@@ -4,14 +4,19 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import widgets from '../../widgets/widgets.json';
 import Introduction from '../../widgets/introduction';
 import SpecialProducts from '../../widgets/specialProducts';
 import NewArrival from '../../widgets/newArrival';
 import BestSeller from '../../widgets/bestSeller';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProducts} from '../../store/actions/productActions';
+import {getCategories} from '../../store/actions/categoryAction';
+import CategoriyCard from '../../components/Categories/CategoriyCard';
 
 interface WidgetItem {
   id: number;
@@ -19,7 +24,15 @@ interface WidgetItem {
   title: string;
 }
 
-const Home = () => {
+const Home: React.FC = () => {
+  const dispatch = useDispatch();
+  const {categories} = useSelector(state => state.categories);
+
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getCategories());
+  }, [dispatch]);
+
   const widgetItem = (item: WidgetItem) => {
     switch (item.component) {
       case 'introduction':
@@ -38,7 +51,14 @@ const Home = () => {
   const renderItem: ListRenderItem<WidgetItem> = ({item}) => widgetItem(item);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        data={categories}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <CategoriyCard item={item} />}
+      />
       <FlatList
         data={widgets}
         keyExtractor={item => item.id.toString()}
@@ -50,4 +70,8 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+  },
+});

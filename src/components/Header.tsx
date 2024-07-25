@@ -30,8 +30,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: height * 0.06,
-    margin: 5,
-    padding: 5,
+
+    padding: 10,
+    backgroundColor: 'white',
   },
   topRightButtons: {
     width: width * 0.3,

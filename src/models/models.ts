@@ -9,3 +9,15 @@ export interface ProductState {
   pending: boolean;
   error: boolean;
 }
+
+export interface Category {
+  category: string;
+}
+
+export interface CategoryState {
+  categories: Category[];
+  productsByCategry: Product[];
+  selectedCategory: string;
+  pending: boolean;
+  error: boolean;
+}
