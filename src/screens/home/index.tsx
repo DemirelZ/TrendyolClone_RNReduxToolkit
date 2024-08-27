@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getProducts} from '../../store/actions/productActions';
 import {getCategories} from '../../store/actions/categoryAction';
 import CategoriyCard from '../../components/Categories/CategoriyCard';
+import {getCart} from '../../store/actions/cartActions';
 
 interface WidgetItem {
   id: number;
@@ -29,6 +30,7 @@ const Home: React.FC = () => {
   const {categories} = useSelector(state => state.categories);
 
   useEffect(() => {
+    dispatch(getCart({userId: '2'}));
     dispatch(getProducts());
     dispatch(getCategories());
   }, [dispatch]);
@@ -61,7 +63,7 @@ const Home: React.FC = () => {
       />
       <FlatList
         data={widgets}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item.id}
         renderItem={renderItem}
       />
     </SafeAreaView>

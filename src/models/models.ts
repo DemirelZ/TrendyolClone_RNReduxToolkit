@@ -21,3 +21,13 @@ export interface CategoryState {
   pending: boolean;
   error: boolean;
 }
+
+export interface Cart {
+  Cart: object;
+}
+
+export interface CartState {
+  cart: Cart[];
+  pending: boolean;
+  error: boolean;
+}

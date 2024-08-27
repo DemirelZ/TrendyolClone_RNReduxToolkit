@@ -26,6 +26,7 @@ const CategoriyCard: React.FC<CategoriyCardProps> = ({item}) => {
             ? styles.selecteButtonStyle
             : {
                 borderWidth: 0.3,
+                borderColor: 'gray',
                 borderRadius: 100,
               }
         }>
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
   selecteButtonStyle: {
     borderWidth: 0.3,
     borderRadius: 100,
+    borderColor: 'gray',
     backgroundColor: 'tomato',
   },
   selecteTextStyle: {
