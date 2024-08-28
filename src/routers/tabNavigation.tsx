@@ -42,6 +42,10 @@ const TabNavigation = () => {
         component={Cart}
         options={{
           tabBarBadge: quantity,
+          tabBarBadgeStyle: {
+            backgroundColor: 'tomato',
+            color: 'white',
+          },
         }}
       />
       <Tab.Screen name={PROFILE} component={Profile} />

@@ -23,7 +23,8 @@ export interface CategoryState {
 }
 
 export interface Cart {
-  Cart: object;
+  productId: number;
+  quantity: number;
 }
 
 export interface CartState {

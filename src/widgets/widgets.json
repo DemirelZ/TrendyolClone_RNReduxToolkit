@@ -1,21 +1,21 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "component": "introduction",
     "title": "Introduction"
   },
   {
-    "id": 2,
+    "id": "2",
     "component": "SpecialProducts",
     "title": "Special Products"
   },
   {
-    "id": 3,
+    "id": "3",
     "component": "NewArrival",
     "title": "New Arrival"
   },
   {
-    "id": 4,
+    "id": "4",
     "component": "BestSeller",
     "title": "Best Seller"
   }

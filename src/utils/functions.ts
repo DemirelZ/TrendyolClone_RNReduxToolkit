@@ -2,7 +2,7 @@ import {Star1} from 'iconsax-react-native';
 //import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 
 export const concatPrice = (price: string) => {
-  return `${price} TL`;
+  return `$${price}`;
 };
 
 /*
