@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -72,8 +73,16 @@ const ProductDetail = ({route}) => {
             height: height * 0.08,
             flex: 3,
           }}>
-          <CustomButton title="Buy Now" buttonType="outLine" />
-          <CustomButton title="Add to Cart" buttonType="bold" />
+          <CustomButton
+            title="Buy Now"
+            buttonType="outLine"
+            onPress={() => Alert.alert('merhaba')}
+          />
+          <CustomButton
+            title="Add to Cart"
+            buttonType="bold"
+            onPress={() => Alert.alert('merhaba')}
+          />
         </View>
       </View>
     </SafeAreaView>

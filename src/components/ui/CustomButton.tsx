@@ -4,12 +4,18 @@ import React from 'react';
 interface CustomButtonProps {
   buttonType: string;
   title: string;
+  onPress: () => void;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({buttonType, title}) => {
+const CustomButton: React.FC<CustomButtonProps> = ({
+  buttonType,
+  title,
+  onPress,
+}) => {
   if (buttonType == 'bold')
     return (
       <TouchableOpacity
+        onPress={onPress}
         style={{
           flex: 1,
           margin: 5,
@@ -29,6 +35,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({buttonType, title}) => {
   if (buttonType == 'outLine')
     return (
       <TouchableOpacity
+        onPress={onPress}
         style={{
           flex: 1,
           margin: 5,

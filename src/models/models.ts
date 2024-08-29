@@ -31,4 +31,5 @@ export interface CartState {
   cart: Cart[];
   pending: boolean;
   error: boolean;
+  totalPrice: number;
 }

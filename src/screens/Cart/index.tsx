@@ -17,7 +17,7 @@ type Props = {};
 
 const Cart = (props: Props) => {
   const dispatch = useDispatch();
-  const {cart, pending} = useSelector(state => state.cart);
+  const {cart, pending, totalPrice} = useSelector(state => state.cart);
 
   useEffect(() => {
     dispatch(getCart({userId: '2'}));
@@ -62,7 +62,7 @@ const Cart = (props: Props) => {
                 fontSize: 26,
                 fontWeight: '500',
               }}>
-              {concatPrice('16000')}
+              {concatPrice(totalPrice)}
             </Text>
           </View>
         </View>

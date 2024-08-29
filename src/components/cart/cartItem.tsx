@@ -8,9 +8,11 @@ import {PRODUCTS_URL} from '../../service/URL';
 import {getRequest} from '../../service/VERB';
 import {height, width} from '../../utils/Costants';
 import CustomButton from '../ui/CustomButton';
+import {setTotalPrice} from '../../store/slices/cartSlice';
 
 const CartItem: React.FC<Cart> = ({item}) => {
   const [product, setProduct] = useState<object>({});
+  const [productPrice, setProductPrice] = useState<number[]>([]);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -18,9 +20,9 @@ const CartItem: React.FC<Cart> = ({item}) => {
     const productUrl: string = `${PRODUCTS_URL}/${item.productId}`;
     getRequest(productUrl).then(data => {
       setProduct(data.data);
-      //onChangePrice(data.data.price);
     });
   }, []);
+
   /*
   const handleRemoveItem = () => {
     dispatch(deleteItemCart({productId: item.productId, price: product.price}));
