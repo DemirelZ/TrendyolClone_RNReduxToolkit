@@ -3,7 +3,7 @@ import {Text, StyleSheet, Pressable, Image, View} from 'react-native';
 import {Cart} from '../../models/models';
 import {PRODUCTDETAIL} from '../../utils/routes';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {PRODUCTS_URL} from '../../service/URL';
 import {getRequest} from '../../service/VERB';
 import {height, width} from '../../utils/Costants';
@@ -13,6 +13,7 @@ import {setTotalPrice} from '../../store/slices/cartSlice';
 const CartItem: React.FC<Cart> = ({item}) => {
   const [product, setProduct] = useState<object>({});
   const [productPrice, setProductPrice] = useState<number[]>([]);
+  const {cart} = useSelector(state => state.cart);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -20,8 +21,9 @@ const CartItem: React.FC<Cart> = ({item}) => {
     const productUrl: string = `${PRODUCTS_URL}/${item.productId}`;
     getRequest(productUrl).then(data => {
       setProduct(data.data);
+      dispatch(setTotalPrice(data.data.price));
     });
-  }, []);
+  }, [cart]);
 
   /*
   const handleRemoveItem = () => {

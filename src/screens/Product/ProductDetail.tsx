@@ -12,12 +12,15 @@ import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
 import CustomButton from '../../components/ui/CustomButton';
 import {Star1} from 'iconsax-react-native';
+import {useDispatch} from 'react-redux';
+import {updateCart} from '../../store/actions/cartActions';
 
 type Props = {};
 
 const ProductDetail = ({route}) => {
   //console.log(route.params);
   const {product} = route.params;
+  const dispatch = useDispatch();
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView>
@@ -81,7 +84,18 @@ const ProductDetail = ({route}) => {
           <CustomButton
             title="Add to Cart"
             buttonType="bold"
-            onPress={() => Alert.alert('merhaba')}
+            onPress={() =>
+              dispatch(
+                updateCart(
+                  {
+                    userId: 2,
+                    date: 2019 - 12 - 10,
+                    products: [{productId: 1, quantity: 3}],
+                  },
+                  '2',
+                ),
+              )
+            }
           />
         </View>
       </View>

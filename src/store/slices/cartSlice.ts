@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Cart, CartState} from '../../models/models';
-import {getCart} from '../actions/cartActions';
+import {getCart, updateCart} from '../actions/cartActions';
 import {act} from 'react';
 
 const initialState: CartState = {
@@ -29,6 +29,16 @@ const CartSlice = createSlice({
         //console.log(state.cart);
       })
       .addCase(getCart.rejected, state => {
+        state.pending = false;
+        state.error = true;
+      })
+      .addCase(updateCart.pending, state => {
+        state.pending = true;
+      })
+      .addCase(updateCart.fulfilled, (state, action: PayloadAction<Cart>) => {
+        (state.pending = false), (state.cart = [...state.cart, action.payload]);
+      })
+      .addCase(updateCart.rejected, state => {
         state.pending = false;
         state.error = true;
       });
