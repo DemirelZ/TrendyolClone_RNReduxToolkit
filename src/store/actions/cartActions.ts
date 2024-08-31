@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {getRequest} from '../../service/VERB';
+import {getRequest, updateRequest} from '../../service/VERB';
 import {CART_URL, CARTBYUSER_URL} from '../../service/URL';
 import {Alert} from 'react-native';
 
@@ -14,9 +14,11 @@ const getCart = createAsyncThunk('cart/getCart', async (params: object) => {
 const updateCart = createAsyncThunk(
   'cart/updateCart',
   async (params: object) => {
-    const response = await getRequest(`${CART_URL}${String(params.userId)}`, {
+    const response = await updateRequest(
+      `${CART_URL}${String(params.userId)}`,
+
       params,
-    });
+    );
     if (response.status == 200) {
       Alert.alert('Info', 'Product successfully added to basket', [
         {

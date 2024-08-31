@@ -14,12 +14,33 @@ import CustomButton from '../../components/ui/CustomButton';
 import {Star1} from 'iconsax-react-native';
 import {useDispatch} from 'react-redux';
 import {updateCart} from '../../store/actions/cartActions';
+import {RouteProp} from '@react-navigation/native';
 
-type Props = {};
+type Product = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+  rating: {
+    rate: number;
+    count: number;
+  };
+};
 
-const ProductDetail = ({route}) => {
+type RootStackParamList = {
+  ProductDetail: {product: Product};
+};
+
+// Route prop'u doğru şekilde tipleyelim
+type Props = {
+  route: RouteProp<RootStackParamList, 'ProductDetail'>;
+};
+
+const ProductDetail: React.FC<Props> = ({route}) => {
   //console.log(route.params);
   const {product} = route.params;
+  //console.log(product);
   const dispatch = useDispatch();
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -89,8 +110,8 @@ const ProductDetail = ({route}) => {
                 updateCart(
                   {
                     userId: 2,
-                    date: 2019 - 12 - 10,
-                    products: [{productId: 1, quantity: 3}],
+                    date: '2019-12-10',
+                    products: [{productId: product.id, quantity: 3}],
                   },
                   '2',
                 ),

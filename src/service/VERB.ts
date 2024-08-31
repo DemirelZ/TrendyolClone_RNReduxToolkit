@@ -9,4 +9,12 @@ const getRequest = async (
   return response;
 };
 
-export {getRequest};
+const updateRequest = async (
+  URL: string,
+  Params: object,
+): Promise<AxiosResponse<any>> => {
+  const response = await Client.put(URL, {params: Params});
+  return response;
+};
+
+export {getRequest, updateRequest};

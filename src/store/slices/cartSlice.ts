@@ -35,7 +35,7 @@ const CartSlice = createSlice({
       .addCase(updateCart.pending, state => {
         state.pending = true;
       })
-      .addCase(updateCart.fulfilled, (state, action: PayloadAction<Cart>) => {
+      .addCase(updateCart.fulfilled, (state, action: PayloadAction<T>) => {
         (state.pending = false), (state.cart = [...state.cart, action.payload]);
       })
       .addCase(updateCart.rejected, state => {
