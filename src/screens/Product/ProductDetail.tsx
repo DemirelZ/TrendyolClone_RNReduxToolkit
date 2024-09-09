@@ -5,13 +5,14 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
 import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
 import CustomButton from '../../components/ui/CustomButton';
-import {Star1} from 'iconsax-react-native';
+import {Heart, Star1} from 'iconsax-react-native';
 import {useDispatch} from 'react-redux';
 import {updateCart} from '../../store/actions/cartActions';
 import {RouteProp} from '@react-navigation/native';
@@ -57,11 +58,39 @@ const ProductDetail: React.FC<Props> = ({route}) => {
         <Text style={{margin: 10, fontSize: 30, fontWeight: '500'}}>
           {product.title}
         </Text>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{margin: 10, fontSize: 20, fontWeight: '500'}}>
-            {product.rating.rate} |
-          </Text>
-          <Star1 size="28" color="#ffa41c" variant="Bold" />
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={{margin: 10, fontSize: 20, fontWeight: '500'}}>
+              {product.rating.rate} |
+            </Text>
+            <Star1 size="28" color="#ffa41c" variant="Bold" />
+          </View>
+          <TouchableOpacity
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 40,
+              height: 40,
+              backgroundColor: 'white',
+              marginRight: 10,
+              borderColor: 'white',
+              borderWidth: 1,
+              borderRadius: 100,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+            }}>
+            <Heart size={26} color="black" />
+          </TouchableOpacity>
         </View>
         <Text style={{margin: 10, fontSize: 18}}>{product.description}</Text>
       </ScrollView>

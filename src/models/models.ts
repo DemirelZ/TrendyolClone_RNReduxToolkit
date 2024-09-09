@@ -1,7 +1,10 @@
 export interface Product {
   id: number;
-  name: string;
+  title: string;
   price: number;
+  image: string;
+  description: string;
+  category: string;
 }
 
 export interface ProductState {
@@ -32,4 +35,17 @@ export interface CartState {
   pending: boolean;
   error: boolean;
   totalPrice: number;
+}
+
+export interface FavouriteItem {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  description: string;
+  category: string;
+}
+
+export interface FavouriteState {
+  favourites: FavouriteItem[];
 }

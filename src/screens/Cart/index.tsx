@@ -72,7 +72,7 @@ const Cart = (props: Props) => {
             height: height * 0.08,
             flex: 2,
           }}>
-          <CustomButton title="Confirm to Cart" buttonType="bold" />
+          <CustomButton title="Checkout" buttonType="bold" />
         </View>
       </View>
     </View>

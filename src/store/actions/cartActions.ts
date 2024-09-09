@@ -16,7 +16,6 @@ const updateCart = createAsyncThunk(
   async (params: object) => {
     const response = await updateRequest(
       `${CART_URL}${String(params.userId)}`,
-
       params,
     );
     if (response.status == 200) {
@@ -31,6 +30,7 @@ const updateCart = createAsyncThunk(
         },
       ]);
     }
+
     return response.data.products[0];
   },
 );

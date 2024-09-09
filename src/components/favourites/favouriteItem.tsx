@@ -1,54 +1,37 @@
 import React, {useEffect, useState, memo} from 'react';
 import {Text, StyleSheet, Pressable, Image, View} from 'react-native';
-import {Cart} from '../../models/models';
+import {Cart, Product} from '../../models/models';
 import {PRODUCTDETAIL} from '../../utils/routes';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {PRODUCTS_URL} from '../../service/URL';
 import {getRequest} from '../../service/VERB';
 import {height, width} from '../../utils/Costants';
-import CustomButton from '../ui/CustomButton';
+
 import {setTotalPrice} from '../../store/slices/cartSlice';
 
-const CartItem: React.FC<Cart> = ({item}) => {
+const FavouriteItem: React.FC<Product> = ({item}) => {
   const [product, setProduct] = useState<object>({});
   const [productPrice, setProductPrice] = useState<number[]>([]);
   const {cart} = useSelector(state => state.cart);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const productUrl: string = `${PRODUCTS_URL}/${item.productId}`;
-    getRequest(productUrl).then(data => {
-      setProduct(data.data);
-      dispatch(setTotalPrice(data.data.price));
-    });
-  }, [cart]);
-
-  console.log('product', cart);
-
-  /*
-  const handleRemoveItem = () => {
-    dispatch(deleteItemCart({productId: item.productId, price: product.price}));
-    onChangePrice(-product.price); // Fiyatı çıkar
-  };
-  */
-
   return (
     <Pressable
       style={styles.container}
-      onPress={() => navigation.navigate(PRODUCTDETAIL, {item: product})}>
+      onPress={() => navigation.navigate(PRODUCTDETAIL, {item: item})}>
       <View style={{padding: 5}}>
-        {product?.image && (
-          <Image style={styles.image} source={{uri: product?.image}} />
+        {item?.image && (
+          <Image style={styles.image} source={{uri: item?.image}} />
         )}
       </View>
       <View style={{flex: 1, padding: 8}}>
         <Text style={styles.title} numberOfLines={1}>
-          {product?.title}
+          {item?.title}
         </Text>
         <Text style={styles.count} numberOfLines={1}>
-          Count:{product?.description}
+          Count:{item?.description}
         </Text>
         <Text style={{color: 'green', fontSize: 16, marginTop: 6}}>
           Free Shipping
@@ -59,7 +42,7 @@ const CartItem: React.FC<Cart> = ({item}) => {
             alignItems: 'flex-end',
             marginTop: 20,
           }}>
-          <Text style={styles.price}>${product?.price}</Text>
+          <Text style={styles.price}>${item?.price}</Text>
         </View>
       </View>
     </Pressable>
@@ -115,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(CartItem);
+export default memo(FavouriteItem);

@@ -13,7 +13,7 @@ const updateRequest = async (
   URL: string,
   Params: object,
 ): Promise<AxiosResponse<any>> => {
-  const response = await Client.put(URL, {params: Params});
+  const response = await Client.put(URL, null, {params: Params}); // Params'i URL sorgu parametresi olarak gönderiyoruz
   return response;
 };
 

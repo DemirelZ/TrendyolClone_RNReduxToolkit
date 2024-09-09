@@ -1,9 +1,19 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
 import {useNavigation} from '@react-navigation/native';
 import {PRODUCTDETAIL} from '../../utils/routes';
+import {Heart, HeartAdd} from 'iconsax-react-native';
+import {useDispatch} from 'react-redux';
+import {addFavourite} from '../../store/slices/favouriteSlice';
 
 interface IPoductCardItem {
   item: {
@@ -17,6 +27,7 @@ interface IPoductCardItem {
 const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
   const navigation = useNavigation();
   //console.log(item);
+  const dispatch = useDispatch();
   return (
     <Pressable
       onPress={() => {
@@ -49,6 +60,28 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
         }}>
         <Text style={{fontSize: 24}}>{concatPrice(item.price)}</Text>
       </View>
+      <TouchableOpacity
+        onPress={() => dispatch(addFavourite(item))}
+        style={{
+          position: 'absolute',
+          top: 6,
+          right: 6,
+          padding: 6,
+          backgroundColor: 'white',
+          borderColor: 'white',
+          borderWidth: 1,
+          borderRadius: 100,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
+        <Heart size={26} color="black" />
+      </TouchableOpacity>
     </Pressable>
   );
 };
