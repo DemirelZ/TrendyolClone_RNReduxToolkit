@@ -7,11 +7,7 @@ import {
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getCart} from '../../store/actions/cartActions';
-import {height} from '../../utils/Costants';
-import {concatPrice} from '../../utils/functions';
-import CustomButton from '../../components/ui/CustomButton';
-import CartItem from '../../components/cart/cartItem';
+
 import FavouriteItem from '../../components/favourites/favouriteItem';
 
 type Props = {};
