@@ -11,7 +11,15 @@ const initialState: ProductState = {
 const productSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    addFavouriteProduct: (state, action) => {
+      state.products = state.products.map(product =>
+        product.id === action.payload.id
+          ? {...product, isFavourite: true}
+          : product,
+      );
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getProducts.pending, state => {
@@ -29,5 +37,5 @@ const productSlice = createSlice({
       });
   },
 });
-
+export const {addFavouriteProduct} = productSlice.actions;
 export default productSlice.reducer;

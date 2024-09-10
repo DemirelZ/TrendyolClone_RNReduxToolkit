@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   Pressable,
   StyleSheet,
@@ -11,9 +12,10 @@ import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
 import {useNavigation} from '@react-navigation/native';
 import {PRODUCTDETAIL} from '../../utils/routes';
-import {Heart, HeartAdd} from 'iconsax-react-native';
-import {useDispatch} from 'react-redux';
+import {Heart} from 'iconsax-react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {addFavourite} from '../../store/slices/favouriteSlice';
+import {addFavouriteProduct} from '../../store/slices/productSlice';
 
 interface IPoductCardItem {
   item: {
@@ -21,6 +23,7 @@ interface IPoductCardItem {
     title: string;
     image: string;
     price: string;
+    isFavourite?: boolean;
   };
 }
 
@@ -28,6 +31,21 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
   const navigation = useNavigation();
   //console.log(item);
   const dispatch = useDispatch();
+
+  const favourites = useSelector(state => state.favourites.favourites) || [];
+
+  const isFavourite = favourites.some(fav => fav.id === item.id);
+
+  const handleAddFavourite = () => {
+    if (isFavourite) {
+      Alert.alert('Information', 'This product is already in your favourites.');
+    } else {
+      // Ürünü favorilere ekle
+      dispatch(addFavourite({...item, isFavourite: true}));
+      dispatch(addFavouriteProduct(item));
+    }
+  };
+
   return (
     <Pressable
       onPress={() => {
@@ -61,7 +79,7 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
         <Text style={{fontSize: 24}}>{concatPrice(item.price)}</Text>
       </View>
       <TouchableOpacity
-        onPress={() => dispatch(addFavourite(item))}
+        onPress={handleAddFavourite}
         style={{
           position: 'absolute',
           top: 6,
@@ -80,7 +98,11 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
           shadowRadius: 3.84,
           elevation: 5,
         }}>
-        <Heart size={26} color="black" />
+        {item.isFavourite ? (
+          <Heart size={26} color="red" variant="Bold" />
+        ) : (
+          <Heart size={26} color="black" variant="Outline" />
+        )}
       </TouchableOpacity>
     </Pressable>
   );

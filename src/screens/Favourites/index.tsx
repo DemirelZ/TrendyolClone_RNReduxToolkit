@@ -15,14 +15,20 @@ type Props = {};
 const Favourites = (props: Props) => {
   const dispatch = useDispatch();
   const {favourites} = useSelector(state => state.favourites);
-  console.log('favourites', favourites);
+  //console.log('favourites', favourites);
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={favourites}
-        renderItem={({item}) => <FavouriteItem item={item} />}
-      />
+      {favourites.length === 0 ? (
+        <Text style={{textAlign: 'center'}}>
+          You haven't added any favourite products yet.
+        </Text>
+      ) : (
+        <FlatList
+          data={favourites}
+          renderItem={({item}) => <FavouriteItem item={item} />}
+        />
+      )}
     </View>
   );
 };

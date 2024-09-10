@@ -13,9 +13,11 @@ import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
 import CustomButton from '../../components/ui/CustomButton';
 import {Heart, Star1} from 'iconsax-react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {updateCart} from '../../store/actions/cartActions';
 import {RouteProp} from '@react-navigation/native';
+import {addFavourite} from '../../store/slices/favouriteSlice';
+import {addFavouriteProduct} from '../../store/slices/productSlice';
 
 type Product = {
   id: number;
@@ -27,6 +29,7 @@ type Product = {
     rate: number;
     count: number;
   };
+  isFavourite: boolean;
 };
 
 type RootStackParamList = {
@@ -43,6 +46,21 @@ const ProductDetail: React.FC<Props> = ({route}) => {
   const {product} = route.params;
   //console.log(product);
   const dispatch = useDispatch();
+
+  const favourites = useSelector(state => state.favourites.favourites) || [];
+
+  const isFavourite = favourites.some(fav => fav.id === product.id);
+
+  const handleAddFavourite = () => {
+    if (isFavourite) {
+      Alert.alert('Information', 'This product is already in your favourites.');
+    } else {
+      // Ürünü favorilere ekle
+      dispatch(addFavourite({...product, isFavourite: true}));
+      dispatch(addFavouriteProduct(product));
+    }
+  };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView>
@@ -70,6 +88,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
             <Star1 size="28" color="#ffa41c" variant="Bold" />
           </View>
           <TouchableOpacity
+            onPress={handleAddFavourite}
             style={{
               alignItems: 'center',
               justifyContent: 'center',
@@ -89,7 +108,11 @@ const ProductDetail: React.FC<Props> = ({route}) => {
               shadowRadius: 3.84,
               elevation: 5,
             }}>
-            <Heart size={26} color="black" />
+            {product.isFavourite ? (
+              <Heart size={26} color="red" variant="Bold" />
+            ) : (
+              <Heart size={26} color="black" variant="Outline" />
+            )}
           </TouchableOpacity>
         </View>
         <Text style={{margin: 10, fontSize: 18}}>{product.description}</Text>

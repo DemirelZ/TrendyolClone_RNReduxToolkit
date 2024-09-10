@@ -6,7 +6,12 @@ const getProducts = createAsyncThunk(
   'products/getRequest',
   async (limit: number) => {
     const response = await getRequest(PRODUCTS_URL, {limit: limit});
-    return response.data;
+    const productsWithFavourite = response.data.map(product => ({
+      ...product,
+      isFavourite: false,
+    }));
+
+    return productsWithFavourite;
   },
 );
 
