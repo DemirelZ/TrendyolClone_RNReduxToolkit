@@ -23,8 +23,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: 'tomato',
-          borderWidth: 1,
-          borderColor: 'white',
           borderRadius: 10,
         }}>
         <Text style={{color: 'white', fontSize: 20, fontWeight: '500'}}>
