@@ -1,5 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {height, width} from '../../utils/Costants';
+import CustomButton from '../ui/CustomButton';
+import {useNavigation} from '@react-navigation/native';
+import Home from '../../screens/home';
 
 interface ListEmtyComponentProps {
   icon: any;
@@ -12,13 +16,15 @@ const ListEmtyComponent: React.FC<ListEmtyComponentProps> = ({
   description,
   icon,
 }) => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
+
+        height: height - 200,
       }}>
       <View
         style={{
@@ -36,6 +42,13 @@ const ListEmtyComponent: React.FC<ListEmtyComponentProps> = ({
       <Text style={{fontSize: 28, textAlign: 'center', color: 'gray'}}>
         {description}
       </Text>
+      <View style={{width: width - 40, height: height * 0.06, marginTop: 20}}>
+        <CustomButton
+          title="Keep shopping"
+          buttonType="bold"
+          onPress={() => navigation.navigate(Home)}
+        />
+      </View>
     </View>
   );
 };
