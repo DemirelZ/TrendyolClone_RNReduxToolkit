@@ -6,3 +6,4 @@ export const PROFILE = 'Profile';
 export const TAB = 'Tab';
 export const PRODUCTDETAIL = 'Product Detail';
 export const PRODUCTLIST = 'Product List';
+export const LOGIN = 'Login';

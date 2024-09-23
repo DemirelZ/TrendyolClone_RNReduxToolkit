@@ -2,10 +2,12 @@ import {createSlice} from '@reduxjs/toolkit';
 
 interface authState {
   isLogin: boolean;
+  pending: boolean;
 }
 
 const initialState: authState = {
   isLogin: false,
+  pending: false,
 };
 
 const AuthSlice = createSlice({

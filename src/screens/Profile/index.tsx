@@ -3,8 +3,11 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import ListEmtyComponent from '../../components/favourites/listEmtyComponent';
 import {ProfileCircle} from 'iconsax-react-native';
+import {useNavigation} from '@react-navigation/native';
+import {LOGIN} from '../../utils/routes';
 
 const Profile = () => {
+  const navigation = useNavigation();
   const {isLogin} = useSelector(state => state.auth);
 
   return (
@@ -19,7 +22,7 @@ const Profile = () => {
           title="My Account"
           description="Log in to view your account. You can follow your orders and elite membership status from your account"
           buttonTitle="Login"
-          buttonOnpress={() => console.log('giriş')}
+          buttonOnpress={() => navigation.navigate(LOGIN)}
         />
       )}
     </View>
