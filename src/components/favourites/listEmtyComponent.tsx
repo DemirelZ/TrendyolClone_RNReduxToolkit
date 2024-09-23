@@ -9,12 +9,16 @@ interface ListEmtyComponentProps {
   icon: any;
   title: string;
   description: string;
+  buttonTitle: string;
+  buttonOnpress: () => void;
 }
 
 const ListEmtyComponent: React.FC<ListEmtyComponentProps> = ({
   title,
   description,
   icon,
+  buttonTitle,
+  buttonOnpress,
 }) => {
   const navigation = useNavigation();
   return (
@@ -44,9 +48,9 @@ const ListEmtyComponent: React.FC<ListEmtyComponentProps> = ({
       </Text>
       <View style={{width: width - 40, height: height * 0.06, marginTop: 20}}>
         <CustomButton
-          title="Keep shopping"
+          title={buttonTitle}
           buttonType="bold"
-          onPress={() => navigation.navigate(Home)}
+          onPress={buttonOnpress}
         />
       </View>
     </View>
