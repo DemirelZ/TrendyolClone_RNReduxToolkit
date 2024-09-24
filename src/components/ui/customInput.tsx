@@ -5,13 +5,31 @@ import {width} from '../../utils/Costants';
 
 type CustomInputProps = {
   placeHolder: string;
+  showIcon: boolean;
+  placeholderTextColor: string;
+  value: string;
+  onChangeText: any;
+  errorText: string;
 };
 
-const CustomInput: React.FC<CustomInputProps> = ({placeHolder}) => {
+const CustomInput: React.FC<CustomInputProps> = ({
+  placeHolder,
+  showIcon = true,
+  placeholderTextColor,
+  value,
+  onChangeText,
+  errorText,
+}) => {
   return (
     <View style={styles.inputContainer}>
-      <SearchNormal color="tomato" size={30} />
-      <TextInput style={styles.input} placeholder={placeHolder}></TextInput>
+      {showIcon && <SearchNormal color={'tomato'} size={30} />}
+      <TextInput
+        style={styles.input}
+        placeholder={placeHolder}
+        placeholderTextColor={placeholderTextColor}
+        value={value}
+        onChangeText={onChangeText}></TextInput>
+      {errorText && <Text>{errorText}</Text>}
     </View>
   );
 };

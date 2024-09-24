@@ -1,8 +1,6 @@
-
 import React, {useEffect} from 'react';
 
 import {
-
   Text,
   StyleSheet,
   View,
@@ -12,12 +10,12 @@ import {
 } from 'react-native';
 import CustomInput from '../../components/ui/customInput';
 import CustomButton from '../../components/ui/CustomButton';
-import { height, width } from '../../utils/Costants';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import { Formik } from 'formik';
-import { CloseCircle } from 'iconsax-react-native';
-
+import {height, width} from '../../utils/Costants';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {Formik} from 'formik';
+import {CloseCircle} from 'iconsax-react-native';
+import {loginSchema} from '../../utils/validationSchema';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -58,7 +56,7 @@ const Login: React.FC = () => {
 
               elevation: 7,
             }}>
-            <CloseCircle size="32" color="white"/>
+            <CloseCircle size="32" color="white" />
           </Pressable>
         </View>
         <Image
@@ -114,10 +112,10 @@ const Login: React.FC = () => {
                 <Pressable>
                   <Text
                     style={{
-                      color: 'tomato'
+                      color: 'tomato',
                       textDecorationLine: 'underline',
                     }}>
-                    Forget Password
+                    Forgot Password
                   </Text>
                 </Pressable>
                 <Pressable>
@@ -126,7 +124,7 @@ const Login: React.FC = () => {
                     <Text
                       style={{
                         color: 'tomato',
-                        textDecorationLine: 'underline'
+                        textDecorationLine: 'underline',
                       }}>
                       SignUp
                     </Text>
