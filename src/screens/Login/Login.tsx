@@ -9,12 +9,14 @@ import {
   Pressable,
 } from 'react-native';
 import CustomInput from '../../components/ui/customInput';
-import CustomButton from '../../components/ui/CustomButton';
+
 import {height, width} from '../../utils/Costants';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import {CloseCircle} from 'iconsax-react-native';
+
+import CustomButton from '../../components/ui/CustomButton';
 import {loginSchema} from '../../utils/validationSchema';
 
 const Login: React.FC = () => {
@@ -66,9 +68,11 @@ const Login: React.FC = () => {
         />
       </View>
       <Formik
-        initialValues={{username: 'johnd', password: 'm38rmF$'}}
+        initialValues={{username: 'mor_2314', password: '83r5^_'}}
         validationSchema={loginSchema}
-        onSubmit={values => dispatch(loginUser(values))}>
+        validateOnChange={false}
+        validateOnBlur={false}
+        onSubmit={values => console.log('Values', values)}>
         {({handleChange, handleBlur, handleSubmit, values, errors}) => (
           <View style={{flex: 1, backgroundColor: 'white'}}>
             <View style={styles.loginBox}>
@@ -82,7 +86,7 @@ const Login: React.FC = () => {
               />
               <CustomInput
                 secureTextEntry={true}
-                placeholder="Password"
+                placeHolder="Password"
                 showIcon={false}
                 placeholderTextColor={'gray'}
                 value={values.password}
@@ -91,14 +95,14 @@ const Login: React.FC = () => {
               />
               <View
                 style={{
-                  height: height * 0.05,
-                  width: width * 0.8,
-                  marginTop: 20,
+                  width: '100%',
+                  height: height * 0.06,
+                  marginVertical: 10,
                 }}>
                 <CustomButton
                   pending={pending}
                   title="Sign In"
-                  buttonType="full"
+                  buttonType="bold"
                   onPress={handleSubmit}
                 />
               </View>

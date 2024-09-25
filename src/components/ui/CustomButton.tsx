@@ -4,6 +4,7 @@ import React from 'react';
 interface CustomButtonProps {
   buttonType: string;
   title: string;
+  pending?: boolean;
   onPress: () => void;
 }
 
