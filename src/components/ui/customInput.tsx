@@ -23,7 +23,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   secureTextEntry = false,
 }) => {
   return (
-    <View style={{flexDirection: 'column'}}>
+    <View style={{flexDirection: 'column', width: '100%'}}>
       <View style={styles.inputContainer}>
         {showIcon && <SearchNormal color={'tomato'} size={30} />}
         <TextInput

@@ -1,10 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {useSelector} from 'react-redux';
+
 import ListEmtyComponent from '../../components/favourites/listEmtyComponent';
 import {ProfileCircle} from 'iconsax-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {LOGIN} from '../../utils/routes';
+import {useSelector} from 'react-redux';
 
 const Profile = () => {
   const navigation = useNavigation();

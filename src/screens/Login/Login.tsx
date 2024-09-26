@@ -18,6 +18,7 @@ import {CloseCircle} from 'iconsax-react-native';
 
 import CustomButton from '../../components/ui/CustomButton';
 import {loginSchema} from '../../utils/validationSchema';
+import {userLogin} from '../../store/actions/authAction';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const Login: React.FC = () => {
         validationSchema={loginSchema}
         validateOnChange={false}
         validateOnBlur={false}
-        onSubmit={values => console.log('Values', values)}>
+        onSubmit={values => dispatch(userLogin(values))}>
         {({handleChange, handleBlur, handleSubmit, values, errors}) => (
           <View style={{flex: 1, backgroundColor: 'white'}}>
             <View style={styles.loginBox}>

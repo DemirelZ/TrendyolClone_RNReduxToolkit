@@ -1,5 +1,6 @@
 import {AxiosResponse} from 'axios';
 import {Client} from './instance';
+import {object} from 'yup';
 
 const getRequest = async (
   URL: string,
@@ -17,4 +18,10 @@ const updateRequest = async (
   return response;
 };
 
-export {getRequest, updateRequest};
+const postRequest = async (URL: string, params: object) => {
+  const response = await Client.post(URL, params);
+
+  return response;
+};
+
+export {getRequest, updateRequest, postRequest};
