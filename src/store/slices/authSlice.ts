@@ -1,6 +1,7 @@
 import {act} from 'react';
 import {createSlice} from '@reduxjs/toolkit';
 import {userLogin} from '../actions/authAction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface authState {
   isLogin: boolean;
@@ -19,7 +20,19 @@ const initialState: authState = {
 const AuthSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    userLoginCheck: (state, action) => {
+      state.token = action.payload;
+      if (action.payload) {
+        state.isLogin = true;
+      }
+    },
+    userLogOut: (state, action) => {
+      state.isLogin = false;
+      state.token = action.payload;
+      AsyncStorage.removeItem('token');
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(userLogin.pending, state => {
@@ -37,4 +50,5 @@ const AuthSlice = createSlice({
   },
 });
 
+export const {userLoginCheck, userLogOut} = AuthSlice.actions;
 export default AuthSlice.reducer;

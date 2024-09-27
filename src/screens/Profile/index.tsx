@@ -5,10 +5,14 @@ import ListEmtyComponent from '../../components/favourites/listEmtyComponent';
 import {ProfileCircle} from 'iconsax-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {LOGIN} from '../../utils/routes';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import CustomButton from '../../components/ui/CustomButton';
+import {height} from '../../utils/Costants';
+import {userLogOut} from '../../store/slices/authSlice';
 
 const Profile = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const {isLogin} = useSelector(state => state.auth);
 
   return (
@@ -16,6 +20,18 @@ const Profile = () => {
       {isLogin ? (
         <View>
           <Text>Profile</Text>
+          <View
+            style={{
+              width: '100%',
+              height: height * 0.06,
+              marginVertical: 10,
+            }}>
+            <CustomButton
+              title="Log Out"
+              buttonType="bold"
+              onPress={() => dispatch(userLogOut())}
+            />
+          </View>
         </View>
       ) : (
         <ListEmtyComponent
