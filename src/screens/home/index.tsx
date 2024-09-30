@@ -20,7 +20,7 @@ import CategoriyCard from '../../components/Categories/CategoriyCard';
 import {getCart} from '../../store/actions/cartActions';
 
 interface WidgetItem {
-  id: number;
+  id: string;
   component: string;
   title: string;
 }
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         data={categories}
-        keyExtractor={item => item.id}
+        keyExtractor={(_, index) => index.toString()}
         renderItem={({item}) => <CategoriyCard item={item} />}
       />
       <FlatList
