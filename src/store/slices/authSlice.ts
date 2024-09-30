@@ -1,6 +1,6 @@
 import {act} from 'react';
 import {createSlice} from '@reduxjs/toolkit';
-import {userLogin} from '../actions/authAction';
+import {getUserInfo, userLogin} from '../actions/authAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface authState {
@@ -8,6 +8,7 @@ interface authState {
   pending: boolean;
   error: boolean;
   token: string;
+  userInfo: object;
 }
 
 const initialState: authState = {
@@ -15,6 +16,7 @@ const initialState: authState = {
   pending: false,
   error: false,
   token: '',
+  userInfo: {},
 };
 
 const AuthSlice = createSlice({
@@ -44,6 +46,16 @@ const AuthSlice = createSlice({
           (state.token = action.payload);
       })
       .addCase(userLogin.rejected, state => {
+        state.pending = false;
+        state.error = true;
+      })
+      .addCase(getUserInfo.pending, state => {
+        state.pending = true;
+      })
+      .addCase(getUserInfo.fulfilled, (state, action) => {
+        (state.pending = false), (state.userInfo = action.payload);
+      })
+      .addCase(getUserInfo.rejected, state => {
         state.pending = false;
         state.error = true;
       });

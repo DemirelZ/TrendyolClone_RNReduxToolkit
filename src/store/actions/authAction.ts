@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {LOGIN_URL} from '../../service/URL';
-import {postRequest} from '../../service/VERB';
+import {LOGIN_URL, USER_URL} from '../../service/URL';
+import {getRequest, postRequest} from '../../service/VERB';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const userLogin = createAsyncThunk('auth/userLogin', async (params: object) => {
@@ -9,4 +9,14 @@ const userLogin = createAsyncThunk('auth/userLogin', async (params: object) => {
   return response.data;
 });
 
-export {userLogin};
+const getUserInfo = createAsyncThunk(
+  'auth/getUserInfo',
+  async (params: object) => {
+    const response = await getRequest(`${USER_URL}/${params.userId}`, {
+      params,
+    });
+    return response.data;
+  },
+);
+
+export {userLogin, getUserInfo};

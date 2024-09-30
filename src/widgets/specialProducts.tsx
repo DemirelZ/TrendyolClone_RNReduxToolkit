@@ -19,6 +19,7 @@ const SpecialProducts = (props: Props) => {
   const {productsByCategry, selectedCategory, pending} = useSelector(
     state => state.categories,
   );
+
   useEffect(() => {
     dispatch(getSpesificCategory(selectedCategory));
   }, [selectedCategory]);
@@ -38,7 +39,7 @@ const SpecialProducts = (props: Props) => {
           showsHorizontalScrollIndicator={false}
           data={productsByCategry}
           renderItem={({item}) => <ProductCard item={item} />}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
         />
       )}
     </View>

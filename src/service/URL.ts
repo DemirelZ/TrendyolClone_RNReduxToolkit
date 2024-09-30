@@ -5,3 +5,4 @@ export const SPESIFIK_CATEGORY_URL = '/products/category/';
 export const CARTBYUSER_URL = '/carts/user/';
 export const CART_URL = '/carts/';
 export const LOGIN_URL = '/auth/login';
+export const USER_URL = '/users';

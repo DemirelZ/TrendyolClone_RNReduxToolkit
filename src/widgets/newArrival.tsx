@@ -24,7 +24,7 @@ const NewArrival: React.FC = () => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
         data={products}
         renderItem={renderItem}
       />
