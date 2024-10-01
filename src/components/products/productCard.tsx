@@ -1,6 +1,5 @@
 import {
   Alert,
-  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -16,6 +15,7 @@ import {Heart} from 'iconsax-react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {addFavourite} from '../../store/slices/favouriteSlice';
 import {addFavouriteProduct} from '../../store/slices/productSlice';
+import FastImage from 'react-native-fast-image';
 
 interface IPoductCardItem {
   item: {
@@ -59,14 +59,18 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
         margin: 5,
         padding: 5,
       }}>
-      <Image
+      <FastImage
         style={{
           width: width * 0.3,
           height: height * 0.2,
-          resizeMode: 'contain',
           alignSelf: 'center',
         }}
-        source={{uri: item.image}}
+        source={{
+          uri: item.image,
+          priority: FastImage.priority.normal,
+          cache: FastImage.cacheControl.web,
+        }}
+        resizeMode={FastImage.resizeMode.contain}
       />
       <Text numberOfLines={4} style={{marginVertical: 10}}>
         {item.title}

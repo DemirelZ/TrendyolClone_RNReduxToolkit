@@ -37,10 +37,10 @@ export const getInitials = (name: {
   firstname: string;
   lastname: string;
 }): string => {
-  const firstInitial = name.firstname
+  const firstInitial = name?.firstname
     ? name.firstname.charAt(0).toUpperCase()
     : '';
-  const lastInitial = name.lastname
+  const lastInitial = name?.lastname
     ? name.lastname.charAt(0).toUpperCase()
     : '';
 

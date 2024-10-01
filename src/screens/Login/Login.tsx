@@ -69,7 +69,7 @@ const Login: React.FC = () => {
         />
       </View>
       <Formik
-        initialValues={{username: 'johnd', password: 'm38rmF$'}}
+        initialValues={{username: 'mor_2314', password: '83r5^_'}}
         validationSchema={loginSchema}
         validateOnChange={false}
         validateOnBlur={false}
