@@ -5,7 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {memo, useEffect} from 'react';
 import WidgetsHeader from '../components/widgets/widgetsHeader';
 import {useDispatch, useSelector} from 'react-redux';
 import ProductCard from '../components/products/productCard';
@@ -46,6 +46,6 @@ const SpecialProducts = (props: Props) => {
   );
 };
 
-export default SpecialProducts;
+export default memo(SpecialProducts);
 
 const styles = StyleSheet.create({});

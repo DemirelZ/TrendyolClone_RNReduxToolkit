@@ -1,5 +1,5 @@
 import {FlatList, ListRenderItem, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import WidgetsHeader from '../components/widgets/widgetsHeader';
 import {useSelector} from 'react-redux';
 import ProductCard from '../components/products/productCard';
@@ -18,6 +18,7 @@ const NewArrival: React.FC = () => {
   const renderItem: ListRenderItem<productCardItem> = ({item}) => (
     <ProductCard item={item} />
   );
+
   return (
     <View style={{margin: 5, backgroundColor: 'white'}}>
       <WidgetsHeader title={'New Arrival'} seeAll={true} type="NewArrival" />
@@ -32,7 +33,7 @@ const NewArrival: React.FC = () => {
   );
 };
 
-export default NewArrival;
+export default memo(NewArrival);
 
 const styles = StyleSheet.create({
   container: {

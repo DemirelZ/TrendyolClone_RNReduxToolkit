@@ -25,8 +25,6 @@ const CartItem: React.FC<Cart> = ({item}) => {
     });
   }, [cart]);
 
-  console.log('product', cart);
-
   /*
   const handleRemoveItem = () => {
     dispatch(deleteItemCart({productId: item.productId, price: product.price}));
@@ -74,6 +72,8 @@ const CartItem: React.FC<Cart> = ({item}) => {
         />
 */
 
+export default memo(CartItem);
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
@@ -114,5 +114,3 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
-
-export default memo(CartItem);

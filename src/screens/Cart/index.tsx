@@ -5,7 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {memo, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCart} from '../../store/actions/cartActions';
 import {height} from '../../utils/Costants';
@@ -79,7 +79,7 @@ const Cart = (props: Props) => {
   );
 };
 
-export default Cart;
+export default memo(Cart);
 
 const styles = StyleSheet.create({
   container: {

@@ -16,7 +16,7 @@ const CartSlice = createSlice({
   reducers: {
     setTotalPrice: (state, action) => {
       console.log('action', action.payload);
-      state.totalPrice += action.payload;
+      state.totalPrice = action.payload; // += yerine direkt set etmek
     },
   },
   extraReducers: builder => {
@@ -26,7 +26,7 @@ const CartSlice = createSlice({
       })
       .addCase(getCart.fulfilled, (state, action: PayloadAction<Cart[]>) => {
         (state.pending = false), (state.cart = action.payload);
-        //console.log(state.cart);
+        console.log('crt', state.cart);
       })
       .addCase(getCart.rejected, state => {
         state.pending = false;

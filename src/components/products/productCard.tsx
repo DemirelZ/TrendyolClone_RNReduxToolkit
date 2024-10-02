@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
 import {useNavigation} from '@react-navigation/native';
@@ -112,6 +112,6 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);
 
 const styles = StyleSheet.create({});

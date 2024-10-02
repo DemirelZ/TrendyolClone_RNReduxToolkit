@@ -1,5 +1,5 @@
+import React, {memo} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
 import WidgetsHeader from '../components/widgets/widgetsHeader';
 import {height, width} from '../utils/Costants';
 import FastImage from 'react-native-fast-image';
@@ -27,6 +27,6 @@ const Introduction = (props: Props) => {
   );
 };
 
-export default Introduction;
+export default memo(Introduction);
 
 const styles = StyleSheet.create({});
