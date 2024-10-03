@@ -1,10 +1,19 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {height, width} from '../utils/Costants';
 import {Sms, Notification} from 'iconsax-react-native';
 import CustomInput from './ui/customInput';
+import {useNavigation} from '@react-navigation/native';
+import {NOTIFICATIONS} from '../utils/routes';
 
 const Header: React.FC = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
       <View style={styles.headerContainer}>
@@ -13,9 +22,11 @@ const Header: React.FC = () => {
         </View>
         <View style={styles.topRightButtons}>
           <Sms color="gray" size={30} />
-          <View style={styles.bellContainer}>
-            <Notification color="white" size={30} />
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate(NOTIFICATIONS)}>
+            <View style={styles.bellContainer}>
+              <Notification color="white" size={30} />
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>

@@ -7,3 +7,4 @@ export const TAB = 'Tab';
 export const PRODUCTDETAIL = 'Product Detail';
 export const PRODUCTLIST = 'Product List';
 export const LOGIN = 'Login';
+export const NOTIFICATIONS = 'Notifications';

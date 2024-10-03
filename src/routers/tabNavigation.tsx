@@ -29,8 +29,8 @@ const TabNavigation = () => {
             name={route.name}
           />
         ),
-        headerShown: true,
-        header: () => <Header />,
+        headerShown: false,
+
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
       })}>
