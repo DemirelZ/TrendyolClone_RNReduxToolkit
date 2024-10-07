@@ -15,8 +15,9 @@ import Login from '../screens/Login/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import {userLoginCheck} from '../store/slices/authSlice';
-import Notifications from '../screens/Notifications/notifications';
+
 import Header from '../components/Header';
+import Notifications from '../screens/Notifications';
 const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   const dispatch = useDispatch();
