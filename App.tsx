@@ -8,9 +8,18 @@ import {store} from './src/store';
 type Props = {};
 
 const App = (props: Props) => {
+  const linking = {
+    prefixes: ['https://www.trendyol.com', 'trendyol://'],
+    config: {
+      screens: {
+        ProductDetail: 'productDetail/:id',
+      },
+    },
+  };
+
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer linking={linking}>
         <StatusBar barStyle={'dark-content'} />
         <RootNavigation />
       </NavigationContainer>

@@ -65,7 +65,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView>
         <Image
-          source={{uri: product.image}}
+          source={{uri: product?.image}}
           style={{
             width: width,
             height: height * 0.3,
@@ -74,7 +74,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           }}
         />
         <Text style={{margin: 10, fontSize: 30, fontWeight: '500'}}>
-          {product.title}
+          {product?.title}
         </Text>
         <View
           style={{
@@ -83,7 +83,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={{margin: 10, fontSize: 20, fontWeight: '500'}}>
-              {product.rating.rate} |
+              {product?.rating.rate} |
             </Text>
             <Star1 size="28" color="#ffa41c" variant="Bold" />
           </View>
@@ -108,14 +108,14 @@ const ProductDetail: React.FC<Props> = ({route}) => {
               shadowRadius: 3.84,
               elevation: 5,
             }}>
-            {product.isFavourite ? (
+            {product?.isFavourite ? (
               <Heart size={26} color="red" variant="Bold" />
             ) : (
               <Heart size={26} color="black" variant="Outline" />
             )}
           </TouchableOpacity>
         </View>
-        <Text style={{margin: 10, fontSize: 18}}>{product.description}</Text>
+        <Text style={{margin: 10, fontSize: 18}}>{product?.description}</Text>
       </ScrollView>
       <View
         style={{
@@ -133,7 +133,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           <View
             style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
             <Text style={{color: 'tomato', fontSize: 26, fontWeight: '500'}}>
-              {concatPrice(product.price)}
+              {concatPrice(product?.price)}
             </Text>
           </View>
           <View
