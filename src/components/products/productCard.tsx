@@ -1,5 +1,6 @@
 import {
   Alert,
+  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -59,18 +60,13 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
         margin: 5,
         padding: 5,
       }}>
-      <FastImage
+      <Image
         style={{
           width: width * 0.3,
           height: height * 0.2,
           alignSelf: 'center',
         }}
-        source={{
-          uri: item.image,
-          priority: FastImage.priority.normal,
-          cache: FastImage.cacheControl.web,
-        }}
-        resizeMode={FastImage.resizeMode.contain}
+        source={{uri: item.image}}
       />
       <Text numberOfLines={4} style={{marginVertical: 10}}>
         {item.title}

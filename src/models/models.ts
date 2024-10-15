@@ -10,6 +10,8 @@ export interface Product {
 
 export interface ProductState {
   products: Product[];
+  singleProduct: object;
+  loadingSingleProduct: boolean;
   pending: boolean;
   error: boolean;
 }

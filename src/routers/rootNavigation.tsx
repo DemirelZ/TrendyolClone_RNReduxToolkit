@@ -52,7 +52,13 @@ const RootNavigation = () => {
         name={TAB}
         component={TabNavigation}
       />
-      <Stack.Screen name={PRODUCTDETAIL} component={ProductDetail} />
+      <Stack.Screen
+        name={PRODUCTDETAIL}
+        component={ProductDetail}
+        options={{
+          headerTitle: 'Product Detail',
+        }}
+      />
       <Stack.Screen name={PRODUCTLIST} component={ProductList} />
       <Stack.Screen name={LOGIN} component={Login} />
       <Stack.Screen name={NOTIFICATIONS} component={Notifications} />

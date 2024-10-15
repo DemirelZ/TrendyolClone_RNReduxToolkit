@@ -1,9 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {getProducts} from '../actions/productActions';
+import {getProducts, getSingleProduct} from '../actions/productActions';
 import {Product, ProductState} from '../../models/models';
 
 const initialState: ProductState = {
   products: [],
+  singleProduct: {},
+  loadingSingleProduct: false,
   pending: false,
   error: false,
 };
@@ -33,6 +35,20 @@ const productSlice = createSlice({
       )
       .addCase(getProducts.rejected, (state, action) => {
         state.pending = false;
+        state.error = true;
+      })
+      .addCase(getSingleProduct.pending, state => {
+        state.loadingSingleProduct = true;
+      })
+      .addCase(
+        getSingleProduct.fulfilled,
+        (state, action: PayloadAction<Product>) => {
+          (state.loadingSingleProduct = false),
+            (state.singleProduct = action.payload);
+        },
+      )
+      .addCase(getSingleProduct.rejected, (state, action) => {
+        state.loadingSingleProduct = false;
         state.error = true;
       });
   },

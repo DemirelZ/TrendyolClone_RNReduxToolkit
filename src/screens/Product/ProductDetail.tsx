@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Alert,
   Image,
   SafeAreaView,
@@ -8,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {height, width} from '../../utils/Costants';
 import {concatPrice} from '../../utils/functions';
 import CustomButton from '../../components/ui/CustomButton';
@@ -18,6 +19,7 @@ import {updateCart} from '../../store/actions/cartActions';
 import {RouteProp} from '@react-navigation/native';
 import {addFavourite} from '../../store/slices/favouriteSlice';
 import {addFavouriteProduct} from '../../store/slices/productSlice';
+import {getSingleProduct} from '../../store/actions/productActions';
 
 type Product = {
   id: number;
@@ -44,12 +46,19 @@ type Props = {
 const ProductDetail: React.FC<Props> = ({route}) => {
   //console.log(route.params);
   const {product} = route.params;
-  //console.log(product);
+  //console.log(product.id);
   const dispatch = useDispatch();
+  const {singleProduct, loadingSingleProduct} = useSelector(
+    state => state.products,
+  );
 
   const favourites = useSelector(state => state.favourites.favourites) || [];
 
   const isFavourite = favourites.some(fav => fav.id === product.id);
+
+  useEffect(() => {
+    if (product?.id) dispatch(getSingleProduct({id: product.id}));
+  }, [dispatch, product.id]);
 
   const handleAddFavourite = () => {
     if (isFavourite) {
@@ -61,20 +70,31 @@ const ProductDetail: React.FC<Props> = ({route}) => {
     }
   };
 
+  if (loadingSingleProduct) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size="large" color="tomato" />
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView>
-        <Image
-          source={{uri: product?.image}}
-          style={{
-            width: width,
-            height: height * 0.3,
-            alignSelf: 'center',
-            resizeMode: 'contain',
-          }}
-        />
+        {singleProduct?.image && (
+          <Image
+            source={{uri: singleProduct?.image}}
+            style={{
+              width: width,
+              height: height * 0.3,
+              alignSelf: 'center',
+              resizeMode: 'contain',
+            }}
+          />
+        )}
         <Text style={{margin: 10, fontSize: 30, fontWeight: '500'}}>
-          {product?.title}
+          {singleProduct?.title}
         </Text>
         <View
           style={{
@@ -83,7 +103,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={{margin: 10, fontSize: 20, fontWeight: '500'}}>
-              {product?.rating.rate} |
+              {singleProduct?.rating?.rate} |
             </Text>
             <Star1 size="28" color="#ffa41c" variant="Bold" />
           </View>
@@ -108,14 +128,16 @@ const ProductDetail: React.FC<Props> = ({route}) => {
               shadowRadius: 3.84,
               elevation: 5,
             }}>
-            {product?.isFavourite ? (
+            {singleProduct?.isFavourite ? (
               <Heart size={26} color="red" variant="Bold" />
             ) : (
               <Heart size={26} color="black" variant="Outline" />
             )}
           </TouchableOpacity>
         </View>
-        <Text style={{margin: 10, fontSize: 18}}>{product?.description}</Text>
+        <Text style={{margin: 10, fontSize: 18}}>
+          {singleProduct?.description}
+        </Text>
       </ScrollView>
       <View
         style={{
@@ -133,7 +155,7 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           <View
             style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
             <Text style={{color: 'tomato', fontSize: 26, fontWeight: '500'}}>
-              {concatPrice(product?.price)}
+              {concatPrice(singleProduct?.price)}
             </Text>
           </View>
           <View

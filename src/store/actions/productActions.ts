@@ -15,4 +15,15 @@ const getProducts = createAsyncThunk(
   },
 );
 
-export {getProducts};
+const getSingleProduct = createAsyncThunk(
+  'products/getSingleProduct',
+  async (params: {id: number; queryParam?: string}) => {
+    const response = await getRequest(`${PRODUCTS_URL}/${params.id}`, {
+      params: {queryParam: params.queryParam},
+    });
+    //console.log(response.data);
+    return response.data;
+  },
+);
+
+export {getProducts, getSingleProduct};
