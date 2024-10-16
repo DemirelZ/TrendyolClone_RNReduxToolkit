@@ -52,3 +52,16 @@ export interface FavouriteItem {
 export interface FavouriteState {
   favourites: FavouriteItem[];
 }
+
+export interface Notification {
+  title: string;
+  description: string;
+  productId: string;
+  url: string;
+}
+
+export interface NotificationSliceProps {
+  notifications: Notification[];
+  pending: boolean;
+  error: boolean;
+}

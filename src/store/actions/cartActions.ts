@@ -3,13 +3,16 @@ import {getRequest, updateRequest} from '../../service/VERB';
 import {CART_URL, CARTBYUSER_URL} from '../../service/URL';
 import {Alert} from 'react-native';
 
-const getCart = createAsyncThunk('cart/getCart', async (params: object) => {
-  const response = await getRequest(`${CARTBYUSER_URL}${params.userId}`, {
-    params,
-  });
-  //console.log(response.data[0].products);
-  return response.data[0].products;
-});
+const getCart = createAsyncThunk(
+  'cart/getCart',
+  async (params: {userId: string}) => {
+    const response = await getRequest(`${CARTBYUSER_URL}${params.userId}`, {
+      params,
+    });
+    //console.log(response.data[0].products);
+    return response.data[0].products;
+  },
+);
 
 const updateCart = createAsyncThunk(
   'cart/updateCart',

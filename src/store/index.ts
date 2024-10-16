@@ -4,6 +4,7 @@ import categorySlice from './slices/categorySlice';
 import cartSlice from './slices/cartSlice';
 import favouriteSlice from './slices/favouriteSlice';
 import authSlice from './slices/authSlice';
+import notificationSlice from './slices/notificationSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     cart: cartSlice,
     favourites: favouriteSlice,
     auth: authSlice,
+    notification: notificationSlice,
   },
 });

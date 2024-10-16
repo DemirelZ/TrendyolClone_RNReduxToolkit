@@ -1,4 +1,11 @@
-import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RootNavigation from './src/routers/rootNavigation';
@@ -19,7 +26,9 @@ const App = (props: Props) => {
 
   return (
     <Provider store={store}>
-      <NavigationContainer linking={linking}>
+      <NavigationContainer
+        linking={linking}
+        fallback={<ActivityIndicator animating />}>
         <StatusBar barStyle={'dark-content'} />
         <RootNavigation />
       </NavigationContainer>

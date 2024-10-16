@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {StyleSheet} from 'react-native';
+import {Alert, StyleSheet} from 'react-native';
 import {
   LOGIN,
   NOTIFICATIONS,
@@ -15,6 +15,7 @@ import Login from '../screens/Login/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import {userLoginCheck} from '../store/slices/authSlice';
+import messaging from '@react-native-firebase/messaging';
 
 import Header from '../components/Header';
 import Notifications from '../screens/Notifications';
@@ -36,6 +37,11 @@ const RootNavigation = () => {
 
   useEffect(() => {
     getData();
+
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+    return unsubscribe;
   }, []);
 
   return (

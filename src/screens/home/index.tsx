@@ -18,6 +18,7 @@ import {getProducts} from '../../store/actions/productActions';
 import {getCategories} from '../../store/actions/categoryAction';
 import CategoriyCard from '../../components/Categories/CategoriyCard';
 import {getCart} from '../../store/actions/cartActions';
+import messaging from '@react-native-firebase/messaging';
 
 interface WidgetItem {
   id: string;
@@ -29,7 +30,22 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const {categories} = useSelector(state => state.categories);
 
+  async function requestUserPermission() {
+    await messaging().registerDeviceForRemoteMessages();
+    const token = await messaging().getToken();
+    console.log(token);
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+  }
+
   useEffect(() => {
+    requestUserPermission();
     dispatch(getCart({userId: '2'}));
     dispatch(getProducts());
     dispatch(getCategories());
