@@ -11,6 +11,7 @@ Developed a React-Native e-commerce application with the following features:
 - Splash screen operations have been performed.
 - FireStore has been used as the database.
 - The API used for product data is [Fake Store API](https://fakestoreapi.com/docs).
+- Coded with **Typscript**
 - Utilizes **Async Storage** for local data storage.
 - Implements **React-Redux** with **Redux Toolkit** for state management.
 - Features a navigation structure for seamless user experience.
