@@ -29,3 +29,14 @@ export const getNotifications = createAsyncThunk(
     }
   },
 );
+
+export const addNotificationsToRemote = createAsyncThunk(
+  'notification/addNotificationsToRemote',
+  async (params: object) =>
+    firestore()
+      .collection('Notifications')
+      .add(params)
+      .then(() => {
+        console.log('Notification added!');
+      }),
+);

@@ -11,9 +11,12 @@ import {Sms, Notification} from 'iconsax-react-native';
 import CustomInput from './ui/customInput';
 import {useNavigation} from '@react-navigation/native';
 import {NOTIFICATIONS} from '../utils/routes';
+import {useSelector} from 'react-redux';
 
 const Header: React.FC = () => {
   const navigation = useNavigation();
+  const {notifications} = useSelector(state => state.notification);
+
   return (
     <SafeAreaView>
       <View style={styles.headerContainer}>
@@ -25,6 +28,22 @@ const Header: React.FC = () => {
           <TouchableOpacity onPress={() => navigation.navigate(NOTIFICATIONS)}>
             <View style={styles.bellContainer}>
               <Notification color="white" size={30} />
+              {notifications.length > 0 && (
+                <View
+                  style={{
+                    width: 24,
+                    height: 24,
+                    position: 'absolute',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    top: -5,
+                    right: -5,
+                    backgroundColor: 'tomato',
+                    borderRadius: 100,
+                  }}>
+                  <Text style={{color: 'white'}}>{notifications.length}</Text>
+                </View>
+              )}
             </View>
           </TouchableOpacity>
         </View>

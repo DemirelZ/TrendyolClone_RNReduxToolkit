@@ -19,6 +19,7 @@ import messaging from '@react-native-firebase/messaging';
 
 import Header from '../components/Header';
 import Notifications from '../screens/Notifications';
+import {addNotificationsToRemote} from '../store/actions/notificationAction';
 const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const RootNavigation = () => {
         dispatch(userLoginCheck(value));
       }
     } catch (e) {
-      // error reading value
+      console.error('Error reading value', e);
     }
   };
 
@@ -39,9 +40,22 @@ const RootNavigation = () => {
     getData();
 
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+      // notification objesindeki title ve body bilgilerini alıyoruz
+      const notification = remoteMessage?.notification || {};
+
+      dispatch(
+        addNotificationsToRemote({
+          title: notification.title || 'Default Title',
+          description: notification.body || 'No description provided',
+          productId: null, // `productId` verisi gelen mesajda yok, o yüzden null gönderiyoruz
+          url: null, // `url` bilgisi de yoksa null olarak gönderiyoruz
+        }),
+      );
     });
-    return unsubscribe;
+
+    return () => {
+      unsubscribe(); // Cleanup
+    };
   }, []);
 
   return (

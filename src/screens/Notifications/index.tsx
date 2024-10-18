@@ -15,10 +15,6 @@ const Notifications = (props: Props) => {
   const dispatch = useDispatch();
   const {notifications, pending} = useSelector(state => state.notification);
 
-  useEffect(() => {
-    dispatch(getNotifications());
-  }, []);
-
   return (
     <View style={styles.container}>
       <FlatList
