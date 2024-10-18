@@ -55,20 +55,33 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
       style={{
         width: width * 0.4,
         height: height * 0.35,
-        borderWidth: 0.3,
+        backgroundColor: '#fff',
+
         borderRadius: 8,
+        shadowColor: '#000',
+        shadowOpacity: 0.3,
+        shadowOffset: {width: 0, height: 4},
+        shadowRadius: 8,
+        elevation: 5,
         margin: 5,
         padding: 5,
       }}>
-      <Image
+      <View
         style={{
           width: width * 0.3,
           height: height * 0.2,
           alignSelf: 'center',
-        }}
-        source={{uri: item.image}}
-      />
-      <Text numberOfLines={4} style={{marginVertical: 10}}>
+        }}>
+        <Image
+          style={{
+            width: '100%',
+            height: '100%',
+            resizeMode: 'contain',
+          }}
+          source={{uri: item.image}}
+        />
+      </View>
+      <Text numberOfLines={3} style={{marginVertical: 5}}>
         {item.title}
       </Text>
       <View
@@ -76,7 +89,7 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
           flex: 1,
           justifyContent: 'flex-end',
         }}>
-        <Text style={{fontSize: 24}}>{concatPrice(item.price)}</Text>
+        <Text style={{fontSize: 22}}>{concatPrice(item.price)}</Text>
       </View>
       <TouchableOpacity
         onPress={handleAddFavourite}
@@ -110,4 +123,18 @@ const ProductCard: React.FC<IPoductCardItem> = ({item}) => {
 
 export default memo(ProductCard);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  deneme: {
+    width: '90%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 8,
+    elevation: 3,
+    padding: 15,
+    marginVertical: 10,
+    alignSelf: 'center',
+  },
+});

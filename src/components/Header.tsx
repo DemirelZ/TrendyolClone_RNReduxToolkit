@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: height * 0.06,
-
-    padding: 10,
+    paddingHorizontal: 10,
+    marginVertical: 10,
     backgroundColor: 'white',
   },
   topRightButtons: {

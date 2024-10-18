@@ -23,7 +23,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   secureTextEntry = false,
 }) => {
   return (
-    <View style={{flexDirection: 'column', width: '100%'}}>
+    <View style={{width: '100%'}}>
       <View style={styles.inputContainer}>
         {showIcon && <SearchNormal color={'tomato'} size={30} />}
         <TextInput
@@ -47,16 +47,19 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#faf9f9',
-    padding: 5,
+    padding: 1,
     borderRadius: 5,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   input: {
     flex: 1,
     backgroundColor: '#faf9f9',
-    fontSize: 22,
-    paddingHorizontal: 5,
+    fontSize: 16,
     borderRadius: 5,
+    textAlignVertical: 'center',
   },
 });
+
+//#faf9f9

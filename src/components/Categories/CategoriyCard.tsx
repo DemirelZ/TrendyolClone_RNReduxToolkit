@@ -25,9 +25,12 @@ const CategoriyCard: React.FC<CategoriyCardProps> = ({item}) => {
           selectedCategory === item
             ? styles.selecteButtonStyle
             : {
-                borderWidth: 0.3,
+                borderWidth: 1,
                 borderColor: 'gray',
                 borderRadius: 100,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'white',
               }
         }>
         <Text
@@ -35,7 +38,8 @@ const CategoriyCard: React.FC<CategoriyCardProps> = ({item}) => {
             selectedCategory === item
               ? styles.selecteTextStyle
               : {
-                  paddingHorizontal: 14,
+                  color: 'black',
+                  paddingHorizontal: 10,
                   paddingVertical: 8,
                 }
           }>
@@ -50,14 +54,16 @@ export default CategoriyCard;
 
 const styles = StyleSheet.create({
   selecteButtonStyle: {
-    borderWidth: 0.3,
+    borderWidth: 1,
     borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderColor: 'gray',
     backgroundColor: 'tomato',
   },
   selecteTextStyle: {
     color: 'white',
-    paddingHorizontal: 14,
+    paddingHorizontal: 10,
     paddingVertical: 8,
   },
 });

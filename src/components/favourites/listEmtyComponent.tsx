@@ -40,7 +40,13 @@ const ListEmtyComponent: React.FC<ListEmtyComponentProps> = ({
         }}>
         {icon}
       </View>
-      <Text style={{padding: 30, fontSize: 30, fontWeight: '500'}}>
+      <Text
+        style={{
+          padding: 30,
+          fontSize: 30,
+          fontWeight: '500',
+          textAlign: 'center',
+        }}>
         {title}
       </Text>
       <Text style={{fontSize: 28, textAlign: 'center', color: 'gray'}}>

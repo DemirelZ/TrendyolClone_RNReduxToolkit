@@ -8,7 +8,7 @@ type Props = {};
 const Introduction = (props: Props) => {
   return (
     <View style={{margin: 'auto'}}>
-      <WidgetsHeader title={'Introduction'} seeAll={false} />
+      <WidgetsHeader seeAll={false} />
       <Image
         source={require('../assets/images/saleFlash.jpg')}
         style={{

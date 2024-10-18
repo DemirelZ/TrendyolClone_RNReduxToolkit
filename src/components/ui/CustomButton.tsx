@@ -28,7 +28,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         style={{
           flex: 1,
           margin: 5,
-          padding: 10,
+          padding: 5,
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: pending ? 'gray' : 'tomato', // Stili de değiştiriyoruz
@@ -50,7 +50,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         style={{
           flex: 1,
           margin: 5,
-          padding: 10,
+          padding: 5,
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: 'white',
